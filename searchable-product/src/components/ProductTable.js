@@ -6,6 +6,12 @@ const ProductTable = (props) => {
   let lastCategory = null;
 
   props.items.forEach((product) => {
+    if(product.name.indexOf(props.filterText) === -1){
+      return;
+    }
+    if(props.inStockOnly && !product.stocked){
+      return;
+    }
     if (product.category !== lastCategory) {
       rows.push(<ProductCategoryRow category={product.category} />);
     }

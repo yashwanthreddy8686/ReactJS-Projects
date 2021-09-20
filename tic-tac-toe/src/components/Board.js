@@ -1,10 +1,13 @@
 import "./Board.css";
+import { useState } from "react";
 import Square from "./Square";
 
 const Board = (props) => {
-    
+
+    const [squares, setSquares] = useState(Array(9).fill(null))
+
   const renderSquare = (i) => {
-    return <Square />;
+    return <Square value={squares[i]}/>;
   };
   const status = "Next player: X";
 

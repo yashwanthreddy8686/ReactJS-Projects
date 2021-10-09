@@ -1,8 +1,7 @@
 import "./Square.css";
-import {useState} from 'react';
 
 const Square = (props) => {
-  return <button className="square">{props.value}</button>;
+  return <button className="square" onClick={props.onClick}>{props.value}</button>;
 };
 
 export default Square;

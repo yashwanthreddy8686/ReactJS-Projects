@@ -1,8 +1,9 @@
-import ExpenseItem from "./components/Expenses/ExpenseItem";
+import React, { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
+import NewExpenses from "./components/NewExpenses/NewExpenses";
 
 function App() {
-  const expenses = [
+  const DUMMY_EXPENSES = [
     {
       id: "e1",
       title: "DoorDash",
@@ -39,7 +40,21 @@ function App() {
       category: "Transportation",
     },
   ];
-  return <Expenses expenses={expenses} />;
+
+  const [updatedExpenses, setExpenses] = useState(DUMMY_EXPENSES);
+
+  const createNewExpense = newExpense => {
+    setExpenses((prevState) => {
+      return [...prevState,newExpense];
+    })
+    console.log(newExpense);
+  }
+  return (
+    <React.Fragment>
+      <NewExpenses onCreate={createNewExpense}/>
+      <Expenses expenses={updatedExpenses} />
+    </React.Fragment>
+  );
 }
 
 export default App;

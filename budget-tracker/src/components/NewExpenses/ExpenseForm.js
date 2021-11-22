@@ -30,6 +30,10 @@ const ExpenseForm = (props) => {
       date: new Date(date),
     };
     props.onCreate(expenseItem);
+    setTitle("");
+    setCategory("");
+    setDate("");
+    setAmount("");
   };
   return (
     <form onSubmit={submitHandler}>

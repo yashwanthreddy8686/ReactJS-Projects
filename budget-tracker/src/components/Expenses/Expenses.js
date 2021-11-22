@@ -1,12 +1,22 @@
 import './Expenses.css'
-import ExpenseItem from "./ExpenseItem";
 import Card from '../UI/Card'
+import ExpensesList from './ExpensesList';
+import ExpenseFilter from './ExpensesFilter';
+import { useState } from 'react';
 
 const Expenses = props =>{
+    const [filteredBy , setFilteredBy] = useState('Dining');
+
+    const onChangeHandler = (category) => {
+        setFilteredBy(category);
+    }
+
+    const filteredExpenses = props.expenses.filter(expense => expense.category === filteredBy);
+    console.log(filteredExpenses);
+
     return <Card className="expenses">
-        {props.expenses.map(expense => {
-            return <ExpenseItem {...expense} key={expense.id}/>
-        })}
+        <ExpenseFilter selected={filteredBy} onChangeFilter={onChangeHandler}/>
+        <ExpensesList filteredExpenses={filteredExpenses}></ExpensesList>
     </Card>
 }
 
